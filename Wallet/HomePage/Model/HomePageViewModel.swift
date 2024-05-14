@@ -18,7 +18,7 @@ class HomePageViewModel: ObservableObject  {
         UtilityItem(icon: "ElementMenuQRcode", title: "My QR code"),
         UtilityItem(icon: "ElementMenuTopUp", title: "Top up")
     ]
-    
+    var firstLoadPage = true
     @Published var listNotification: [NotificationObject] = []
     @Published var favorites: [FavoriteItem] = []
     @Published var adBanner:[Banner] = []
@@ -71,8 +71,8 @@ class HomePageViewModel: ObservableObject  {
             .store(in: &cancellables)
     }
     
-    func accountObservables(isFirstOpen: Bool, type: AccountType) {
-        let urls = urlToFetch(isFirstOpen: isFirstOpen, accountType: type)
+    func accountObservables(isFirstOpen: Bool, type: AccountCurrencyType) {
+        let urls = URLHelper.urlToFetch(isFirstOpen: isFirstOpen, accountType: type)
         let fetchSavingAccount = APIService.shared.fetchDataWithCombine(for: SavingAccountResponseModel.self, url: urls.0)
             .map { $0.result?.summaryBalance() }
         let fetchFixedDepositedAccount = APIService.shared.fetchDataWithCombine(for: FixedDepositedAccountResponseModel.self, url: urls.1)
@@ -87,6 +87,10 @@ class HomePageViewModel: ObservableObject  {
             } receiveValue: {[weak self] models in
                 guard let strongSelf = self else {return}
                 let summary = (models.0 ?? 0) + (models.1 ?? 0) + (models.2 ?? 0)
+                print("summaryy = \(summary)")
+                if isFirstOpen {
+                    strongSelf.firstLoadPage = false
+                }
                 if type == .KHR {
                     strongSelf.summaryKhrBalance = summary
                 } else {
@@ -96,22 +100,6 @@ class HomePageViewModel: ObservableObject  {
             .store(in: &cancellables)
     }
     
-    func urlToFetch(isFirstOpen: Bool, accountType: AccountType) -> (String, String, String) {
-        var urlSavingAccount = ""
-        var urlFixedDepositedAccount = ""
-        var urlDigitalAccount = ""
-        
-        if accountType == .KHR {
-            urlSavingAccount = isFirstOpen ? UrlFirstOpenConstant.KhrSavingAccount : UrlPullToRefreshConstant.KhrSavingAccount
-            urlFixedDepositedAccount = isFirstOpen ? UrlFirstOpenConstant.KhrFixedDepositedAccount : UrlPullToRefreshConstant.KhrFixedDepositedAccount
-            urlDigitalAccount = isFirstOpen ? UrlFirstOpenConstant.KhrDigitalAccount : UrlPullToRefreshConstant.KhrDigitalAccount
-        } else if accountType == .USD {
-            urlSavingAccount = isFirstOpen ? UrlFirstOpenConstant.UsdSavingAccount : UrlPullToRefreshConstant.UsdSavingAccount
-            urlFixedDepositedAccount = isFirstOpen ? UrlFirstOpenConstant.UsdFixedDepositedAccount : UrlPullToRefreshConstant.UsdFixedDepositedAccount
-            urlDigitalAccount = isFirstOpen ? UrlFirstOpenConstant.UsdDigitalAccount : UrlPullToRefreshConstant.UsdDigitalAccount
-        }
-        return (urlSavingAccount, urlFixedDepositedAccount, urlDigitalAccount)
-    }
     
 }
 

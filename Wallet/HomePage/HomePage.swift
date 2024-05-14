@@ -50,9 +50,10 @@ struct HomePageView: View {
                 }
                 .tabbarItem(tab: .home, selection: $tabSelection)
                 .onAppear(perform: {
+                    print("ON APPEAR")
                     viewModel.fetchBanner()
-                    viewModel.accountObservables(isFirstOpen: true, type: .KHR)
-                    viewModel.accountObservables(isFirstOpen: true, type: .USD)
+                    viewModel.accountObservables(isFirstOpen: viewModel.firstLoadPage, type: .KHR)
+                    viewModel.accountObservables(isFirstOpen: viewModel.firstLoadPage, type: .USD)
                     viewModel.fetchFavoriteList(isFirstOpen: true)
                     viewModel.fetchNotificationList(isFirstOpen: true)
                 })

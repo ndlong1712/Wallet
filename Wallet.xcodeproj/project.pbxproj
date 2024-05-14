@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E110251D2BF31CEA00A3CF90 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E110251C2BF31CEA00A3CF90 /* URLHelper.swift */; };
 		E1D15B7D2BEE8B72005A9E63 /* WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D15B7C2BEE8B72005A9E63 /* WalletApp.swift */; };
 		E1D15B7F2BEE8B72005A9E63 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D15B7E2BEE8B72005A9E63 /* HomePage.swift */; };
 		E1D15B812BEE8B75005A9E63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D15B802BEE8B75005A9E63 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E110251C2BF31CEA00A3CF90 /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
 		E1D15B792BEE8B72005A9E63 /* Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D15B7C2BEE8B72005A9E63 /* WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletApp.swift; sourceTree = "<group>"; };
 		E1D15B7E2BEE8B72005A9E63 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				E1D15BB42BF10380005A9E63 /* APIService */,
 				E1D15BBE2BF11531005A9E63 /* Extension.swift */,
+				E110251C2BF31CEA00A3CF90 /* URLHelper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				E1D15BB12BEFC9F9005A9E63 /* ShimmerEffectBox.swift in Sources */,
 				E1D15BC92BF140BF005A9E63 /* FavoriteModel.swift in Sources */,
 				E1D15B9E2BEF3037005A9E63 /* MyFavoriteView.swift in Sources */,
+				E110251D2BF31CEA00A3CF90 /* URLHelper.swift in Sources */,
 				E1D15B8F2BEE9DD5005A9E63 /* CustomTabbarContainerView.swift in Sources */,
 				E1D15BB32BEFD9BE005A9E63 /* LoadingView.swift in Sources */,
 			);

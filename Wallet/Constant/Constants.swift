@@ -22,6 +22,7 @@ extension Color {
     }
 }
 
+
     
 enum UrlFirstOpenConstant {
     static let UsdSavingAccount = "https://willywu0201.github.io/data/usdSavings1.json"

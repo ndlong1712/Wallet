@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AccountType {
+enum AccountCurrencyType {
     case USD
     case KHR
 }
